@@ -32,7 +32,7 @@ export default class UserInactivity extends PureComponent {
     this.panResponder = PanResponder.create({
       onStartShouldSetPanResponder: this.onStartShouldSetPanResponder,
       onMoveShouldSetPanResponder: this.onMoveShouldSetPanResponder,
-      onStartShouldSetPanResponderCapture: () => false,
+      onStartShouldSetPanResponderCapture: this.onStartShouldSetPanResponderCapture,
       onMoveShouldSetPanResponderCapture: () => false,
       onPanResponderTerminationRequest: () => true,
       onShouldBlockNativeResponder: () => false,
@@ -48,6 +48,11 @@ export default class UserInactivity extends PureComponent {
   }
 
   onStartShouldSetPanResponder = () => {
+    this.setIsActive();
+    return false;
+  }
+
+  onStartShouldSetPanResponderCapture = () => {
     this.setIsActive();
     return false;
   }
